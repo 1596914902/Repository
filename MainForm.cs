@@ -148,9 +148,7 @@ public partial class MainForm : Form
         // ==================== 分割容器 ====================
         _splitContainer = new SplitContainer
         {
-            Dock = DockStyle.Fill,
-            Panel1MinSize = 400,
-            Panel2MinSize = 200
+            Dock = DockStyle.Fill
         };
 
         // -- 左侧：视频显示面板 --
@@ -414,6 +412,8 @@ public partial class MainForm : Form
         this.FormClosing += OnFormClosing;
         this.Load += (_, _) =>
         {
+            _splitContainer.Panel1MinSize = 400;
+            _splitContainer.Panel2MinSize = 200;
             _splitContainer.SplitterDistance = (int)(this.ClientSize.Width * 0.65);
         };
     }
