@@ -55,7 +55,7 @@ public class DatabaseService : IDisposable
                 AddedTime DATETIME DEFAULT CURRENT_TIMESTAMP
             );";
 
-        using var cmd = new SQLiteCommand(createTableSql, _connection);
+        using var cmd = new SQLiteCommand(createTableSql, Connection);
         cmd.ExecuteNonQuery();
     }
 
@@ -67,7 +67,7 @@ public class DatabaseService : IDisposable
         var items = new List<MediaItem>();
         const string sql = "SELECT Id, FilePath, Title, Duration, AddedTime FROM Playlist ORDER BY Id ASC;";
 
-        using var cmd = new SQLiteCommand(sql, _connection);
+        using var cmd = new SQLiteCommand(sql, Connection);
         using var reader = cmd.ExecuteReader();
         while (reader.Read())
         {
@@ -92,7 +92,7 @@ public class DatabaseService : IDisposable
             INSERT OR IGNORE INTO Playlist (FilePath, Title, Duration)
             VALUES (@FilePath, @Title, @Duration);";
 
-        using var cmd = new SQLiteCommand(sql, _connection);
+        using var cmd = new SQLiteCommand(sql, Connection);
         cmd.Parameters.AddWithValue("@FilePath", item.FilePath);
         cmd.Parameters.AddWithValue("@Title", item.Title);
         cmd.Parameters.AddWithValue("@Duration", item.Duration);
@@ -105,7 +105,7 @@ public class DatabaseService : IDisposable
     public void RemoveItem(int id)
     {
         const string sql = "DELETE FROM Playlist WHERE Id = @Id;";
-        using var cmd = new SQLiteCommand(sql, _connection);
+        using var cmd = new SQLiteCommand(sql, Connection);
         cmd.Parameters.AddWithValue("@Id", id);
         cmd.ExecuteNonQuery();
     }
@@ -116,7 +116,7 @@ public class DatabaseService : IDisposable
     public void ClearAll()
     {
         const string sql = "DELETE FROM Playlist;";
-        using var cmd = new SQLiteCommand(sql, _connection);
+        using var cmd = new SQLiteCommand(sql, Connection);
         cmd.ExecuteNonQuery();
     }
 
