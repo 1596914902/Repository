@@ -149,7 +149,7 @@ public partial class MainForm : Form
         _splitContainer = new SplitContainer
         {
             Dock = DockStyle.Fill,
-            SplitterDistance = (int)(this.Width * 0.65),
+            SplitterDistance = 700,  // 约65% × 1100（窗体默认宽度）
             Panel1MinSize = 400,
             Panel2MinSize = 200
         };
