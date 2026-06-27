@@ -1,0 +1,12 @@
+# .NET build outputs
+bin/
+obj/
+
+# SQLite database
+*.db
+*.db-journal
+
+# IDE
+.vs/
+*.user
+*.suo
