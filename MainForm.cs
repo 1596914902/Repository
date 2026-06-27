@@ -744,9 +744,9 @@ public partial class MainForm : Form
     {
         _progressTimer.Stop();
         _statusTimer.Stop();
-        _vlcPlayer?.Stop();
-        _vlcPlayer?.Dispose();
-        _libVlc?.Dispose();
+        try { _vlcPlayer?.Stop(); } catch { }
+        try { _vlcPlayer?.Dispose(); } catch { }
+        try { _libVlc?.Dispose(); } catch { }
         _playlistService.Dispose();
     }
 
@@ -756,8 +756,8 @@ public partial class MainForm : Form
         {
             _progressTimer?.Dispose();
             _statusTimer?.Dispose();
-            _vlcPlayer?.Dispose();
-            _libVlc?.Dispose();
+            try { _vlcPlayer?.Dispose(); } catch { }
+            try { _libVlc?.Dispose(); } catch { }
             _playlistService?.Dispose();
         }
         base.Dispose(disposing);
