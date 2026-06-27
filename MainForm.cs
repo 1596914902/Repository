@@ -149,7 +149,6 @@ public partial class MainForm : Form
         _splitContainer = new SplitContainer
         {
             Dock = DockStyle.Fill,
-            SplitterDistance = 700,  // 约65% × 1100（窗体默认宽度）
             Panel1MinSize = 400,
             Panel2MinSize = 200
         };
@@ -413,6 +412,10 @@ public partial class MainForm : Form
 
         // 窗口关闭
         this.FormClosing += OnFormClosing;
+        this.Load += (_, _) =>
+        {
+            _splitContainer.SplitterDistance = (int)(this.ClientSize.Width * 0.65);
+        };
     }
 
     #region UI辅助方法
